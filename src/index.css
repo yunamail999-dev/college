@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(243, 156, 18, 0.5), 0 0 40px rgba(243, 156, 18, 0.3);
+  }
+
+  .glass-panel {
+    @apply bg-white/75 backdrop-blur-xl border border-white/60 shadow-glass;
+  }
+
+  .glass-nav {
+    @apply bg-white/90 backdrop-blur-lg shadow-md border-b border-white/50;
+  }
+
+  /* 移除會導致 Rollup 打包崩潰的 Data URI bg-aura，改為標準的漸層 */
+  .bg-aura {
+    background: linear-gradient(-45deg, #fffaf2, #f3e5f5, #e0f7fa, #fff6e5);
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+  }
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* 套用會流動的高飽和度柔美背景，取代單調的全白黑 */
+  @apply bg-aura text-dark-800 font-sans antialiased overflow-x-hidden min-h-screen relative;
+}
+
+/* 滾動條優化 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fdfbf7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f3c471;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f39c12;
+}
