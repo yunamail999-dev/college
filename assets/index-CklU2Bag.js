@@ -7065,6 +7065,10 @@ const Award = createLucideIcon("Award", [
   ["circle", { cx: "12", cy: "8", r: "6", key: "1vp47v" }],
   ["path", { d: "M15.477 12.89 17 22l-5-3-5 3 1.523-9.11", key: "em7aur" }]
 ]);
+const BookOpen = createLucideIcon("BookOpen", [
+  ["path", { d: "M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z", key: "vv98re" }],
+  ["path", { d: "M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z", key: "1cyq3y" }]
+]);
 const ChevronDown = createLucideIcon("ChevronDown", [
   ["path", { d: "m6 9 6 6 6-6", key: "qrunsl" }]
 ]);
@@ -7082,11 +7086,6 @@ const Heart = createLucideIcon("Heart", [
       key: "c3ymky"
     }
   ]
-]);
-const Image = createLucideIcon("Image", [
-  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", ry: "2", key: "1m3agn" }],
-  ["circle", { cx: "9", cy: "9", r: "2", key: "af1f0g" }],
-  ["path", { d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21", key: "1xmnt7" }]
 ]);
 const Mail = createLucideIcon("Mail", [
   ["rect", { width: "20", height: "16", x: "2", y: "4", rx: "2", key: "18n3k1" }],
@@ -15386,19 +15385,135 @@ function AcademySection() {
     ] })
   ] });
 }
-const totalImages = 44;
-const images = Array.from({ length: totalImages }, (_, i) => {
+const SERIES_1_TOTAL = 44;
+const series1Images = Array.from({ length: SERIES_1_TOTAL }, (_, i) => {
   const num = String(i + 1).padStart(4, "0");
   return `${"/college/"}works/心靈佛學傳家寶 - 改_page-${num}.jpg`;
 });
+const SERIES_2_TOTAL = 108;
+const series2Images = Array.from({ length: SERIES_2_TOTAL }, (_, i) => {
+  return `${"/college/"}works2/投影片${i + 1}.JPG`;
+});
+const SERIES = [
+  {
+    id: 1,
+    title: "《心靈佛學傳家寶》",
+    subtitle: "老師匯聚多年心法與研究精華，帶您透過文字與編排，觸碰內心深處的祥和與智慧。",
+    label: "心靈佛學傳家寶",
+    badge: "第一系列",
+    badgeColor: "from-accent-light to-accent",
+    images: series1Images,
+    total: SERIES_1_TOTAL,
+    previewCount: 12,
+    altPrefix: "心靈佛學傳家寶 內頁"
+  },
+  {
+    id: 2,
+    title: "《易經》",
+    subtitle: "深入淺出地解析千年易經智慧，引導您探索宇宙萬物運行的規律，掌握生命的密碼。",
+    label: "易經系列",
+    badge: "第二系列",
+    badgeColor: "from-primary-500 to-primary-700",
+    images: series2Images,
+    total: SERIES_2_TOTAL,
+    previewCount: 12,
+    altPrefix: "易經 投影片"
+  }
+];
+function Lightbox({ series, currentIndex, onClose, onPrev, onNext }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.div,
+    {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      exit: { opacity: 0 },
+      className: "fixed inset-0 z-[100] flex items-center justify-center bg-dark-900/98",
+      onClick: onClose,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            onClick: onClose,
+            className: "absolute top-4 right-4 md:top-6 md:right-6 text-primary-400 hover:text-surface-primary bg-dark-800 hover:bg-accent rounded-full p-3 md:p-4 transition-all border border-primary-800/30 shadow-lg z-50 active:scale-95 cursor-pointer",
+            "aria-label": "Close",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 24 })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            onClick: (e) => {
+              e.stopPropagation();
+              onPrev();
+            },
+            className: "absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 text-primary-400 hover:text-surface-primary bg-dark-800 hover:bg-accent p-2 md:p-3 rounded-full transition-all border border-primary-800/30 shadow-lg z-50 active:scale-95 cursor-pointer",
+            "aria-label": "Previous",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { size: 32 })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            onClick: (e) => {
+              e.stopPropagation();
+              onNext();
+            },
+            className: "absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 text-primary-400 hover:text-surface-primary bg-dark-800 hover:bg-accent p-2 md:p-3 rounded-full transition-all border border-primary-800/30 shadow-lg z-50 active:scale-95 cursor-pointer",
+            "aria-label": "Next",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { size: 32 })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "max-w-5xl max-h-[95vh] w-full px-14 flex flex-col items-center justify-center h-full z-10",
+            onClick: (e) => e.stopPropagation(),
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                motion.div,
+                {
+                  initial: { opacity: 0, scale: 0.95 },
+                  animate: { opacity: 1, scale: 1 },
+                  exit: { opacity: 0, scale: 1.05 },
+                  transition: { duration: 0.3 },
+                  className: "relative bg-surface-primary rounded-xl shadow-card flex-1 max-h-[85vh] w-full flex items-center justify-center border-2 border-surface-tertiary",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "img",
+                    {
+                      src: series.images[currentIndex],
+                      alt: `${series.altPrefix} ${currentIndex + 1}`,
+                      className: "h-full w-auto object-contain select-none",
+                      style: { maxHeight: "100%", maxWidth: "100%" },
+                      draggable: "false"
+                    }
+                  )
+                },
+                currentIndex
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-6 bg-dark-800 border border-primary-800/30 px-6 py-2.5 rounded-full text-accent font-semibold tracking-[0.15em] text-base", children: [
+                series.title,
+                "　PAGE ",
+                currentIndex + 1,
+                " / ",
+                series.total
+              ] })
+            ]
+          }
+        )
+      ]
+    }
+  );
+}
 function WorksGallery() {
+  const [activeSeries, setActiveSeries] = reactExports.useState(0);
   const [currentIndex, setCurrentIndex] = reactExports.useState(0);
   const [isModalOpen, setIsModalOpen] = reactExports.useState(false);
+  const series = SERIES[activeSeries];
   const prevSlide = () => {
-    setCurrentIndex((prev) => prev === 0 ? images.length - 1 : prev - 1);
+    setCurrentIndex((prev) => prev === 0 ? series.total - 1 : prev - 1);
   };
   const nextSlide = () => {
-    setCurrentIndex((prev) => prev === images.length - 1 ? 0 : prev + 1);
+    setCurrentIndex((prev) => prev === series.total - 1 ? 0 : prev + 1);
   };
   const openModal = (index) => {
     setCurrentIndex(index);
@@ -15406,6 +15521,12 @@ function WorksGallery() {
     document.body.style.overflow = "hidden";
   };
   const closeModal = () => {
+    setIsModalOpen(false);
+    document.body.style.overflow = "auto";
+  };
+  const handleSwitchSeries = (idx) => {
+    setActiveSeries(idx);
+    setCurrentIndex(0);
     setIsModalOpen(false);
     document.body.style.overflow = "auto";
   };
@@ -15421,7 +15542,7 @@ function WorksGallery() {
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-20", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-12", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           motion.div,
           {
@@ -15430,7 +15551,7 @@ function WorksGallery() {
             viewport: { once: true },
             transition: { type: "spring", stiffness: 200, damping: 20 },
             className: "inline-flex items-center justify-center p-5 bg-dark-800 border border-primary-900/30 rounded-2xl mb-8 shadow-card",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Image, { className: "w-9 h-9 text-accent", strokeWidth: 1.5 })
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { className: "w-9 h-9 text-accent", strokeWidth: 1.5 })
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -15443,42 +15564,72 @@ function WorksGallery() {
             children: "出版著作與成果"
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-20 h-0.5 bg-accent mx-auto rounded-full mb-8" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "text-lg md:text-xl text-primary-300 max-w-3xl mx-auto leading-relaxed font-light", children: [
-          "《心靈佛學傳家寶》——",
-          /* @__PURE__ */ jsxRuntimeExports.jsx("br", { className: "block sm:hidden" }),
-          " ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-editorial italic text-accent-light text-xl md:text-2xl", children: "Masterpiece" }),
-          " ",
-          /* @__PURE__ */ jsxRuntimeExports.jsx("br", { className: "hidden sm:block" }),
-          "老師匯聚多年心法與研究精華，帶您透過文字與編排，觸碰內心深處的祥和與智慧。"
-        ] })
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-20 h-0.5 bg-accent mx-auto rounded-full mb-4" })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-5 mb-20 px-2 sm:px-0", children: images.slice(0, 12).map((img, index) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-center gap-3 sm:gap-4 mb-14 flex-wrap", children: SERIES.map((s, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        motion.button,
+        {
+          whileHover: { scale: 1.04 },
+          whileTap: { scale: 0.97 },
+          onClick: () => handleSwitchSeries(idx),
+          className: `relative flex items-center gap-3 px-6 sm:px-8 py-3.5 rounded-full font-bold text-base tracking-wide transition-all duration-300 border cursor-pointer overflow-hidden
+                                ${activeSeries === idx ? "text-dark-900 border-transparent shadow-glow" : "text-primary-400 border-primary-800/40 bg-dark-800 hover:border-accent/40 hover:text-accent"}`,
+          children: [
+            activeSeries === idx && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `absolute inset-0 bg-gradient-to-r ${s.badgeColor} z-0` }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "relative z-10 text-xs font-semibold opacity-75", children: s.badge }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "relative z-10", children: s.title })
+          ]
+        },
+        s.id
+      )) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        motion.p,
+        {
+          initial: { opacity: 0, y: 10 },
+          animate: { opacity: 1, y: 0 },
+          exit: { opacity: 0, y: -10 },
+          transition: { duration: 0.35 },
+          className: "text-center text-lg md:text-xl text-primary-300 max-w-3xl mx-auto leading-relaxed font-light mb-16",
+          children: series.subtitle
+        },
+        activeSeries
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         motion.div,
         {
           initial: { opacity: 0, y: 20 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { delay: index * 0.04 + 0.1, duration: 0.4 },
-          className: "relative aspect-[3/4] rounded-xl cursor-pointer group bg-dark-800 p-1.5 shadow-card hover:shadow-glow transition-all duration-300 overflow-hidden border border-primary-900/20 hover:border-accent/60",
-          onClick: () => openModal(index),
-          children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-full h-full relative overflow-hidden rounded-lg", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "img",
-              {
-                src: img,
-                alt: `心靈佛學傳家寶 內頁 ${index + 1}`,
-                loading: "lazy",
-                decoding: "async",
-                className: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-dark-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-surface-primary text-accent p-3 rounded-full shadow-soft transform scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 delay-100", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Maximize2, { className: "w-6 h-6" }) }) })
-          ] })
+          animate: { opacity: 1, y: 0 },
+          exit: { opacity: 0, y: -20 },
+          transition: { duration: 0.4 },
+          className: "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-5 mb-16 px-2 sm:px-0",
+          children: series.images.slice(0, series.previewCount).map((img, index) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            motion.div,
+            {
+              initial: { opacity: 0, y: 20 },
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true },
+              transition: { delay: index * 0.04, duration: 0.4 },
+              className: "relative aspect-[3/4] rounded-xl cursor-pointer group bg-dark-800 p-1.5 shadow-card hover:shadow-glow transition-all duration-300 overflow-hidden border border-primary-900/20 hover:border-accent/60",
+              onClick: () => openModal(index),
+              children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-full h-full relative overflow-hidden rounded-lg", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "img",
+                  {
+                    src: img,
+                    alt: `${series.altPrefix} ${index + 1}`,
+                    loading: "lazy",
+                    decoding: "async",
+                    className: "w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 bg-dark-900/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "bg-surface-primary text-accent p-3 rounded-full shadow-soft transform scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-300 delay-100", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Maximize2, { className: "w-6 h-6" }) }) })
+              ] })
+            },
+            index
+          ))
         },
-        index
-      )) }),
+        activeSeries
+      ) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-center", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
         motion.button,
         {
@@ -15489,82 +15640,22 @@ function WorksGallery() {
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] group-hover:animate-[shine_1.5s_ease-in-out_infinite] will-change-transform" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "relative z-10", children: "完整閱覽電子書" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-3 px-2.5 py-0.5 rounded-full bg-dark-900/20 text-dark-900 text-sm font-bold relative z-10", children: "44 頁" })
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "ml-3 px-2.5 py-0.5 rounded-full bg-dark-900/20 text-dark-900 text-sm font-bold relative z-10", children: [
+              series.total,
+              " 頁"
+            ] })
           ]
         }
       ) })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: isModalOpen && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      motion.div,
+    /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: isModalOpen && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Lightbox,
       {
-        initial: { opacity: 0 },
-        animate: { opacity: 1 },
-        exit: { opacity: 0 },
-        className: "fixed inset-0 z-[100] flex items-center justify-center bg-dark-900/98",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              onClick: closeModal,
-              className: "absolute top-4 right-4 md:top-6 md:right-6 text-primary-400 hover:text-surface-primary bg-dark-800 hover:bg-accent rounded-full p-3 md:p-4 transition-all border border-primary-800/30 shadow-lg z-50 active:scale-95 cursor-pointer",
-              "aria-label": "Close",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 24 })
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              onClick: (e) => {
-                e.stopPropagation();
-                prevSlide();
-              },
-              className: "absolute left-2 sm:left-4 md:left-8 top-1/2 -translate-y-1/2 text-primary-400 hover:text-surface-primary bg-dark-800 hover:bg-accent p-2 md:p-3 rounded-full transition-all border border-primary-800/30 shadow-lg z-50 active:scale-95 cursor-pointer",
-              "aria-label": "Previous",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronLeft, { size: 32 })
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              onClick: (e) => {
-                e.stopPropagation();
-                nextSlide();
-              },
-              className: "absolute right-2 sm:right-4 md:right-8 top-1/2 -translate-y-1/2 text-primary-400 hover:text-surface-primary bg-dark-800 hover:bg-accent p-2 md:p-3 rounded-full transition-all border border-primary-800/30 shadow-lg z-50 active:scale-95 cursor-pointer",
-              "aria-label": "Next",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { size: 32 })
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl max-h-[95vh] w-full px-14 flex flex-col items-center justify-center h-full z-10", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              motion.div,
-              {
-                initial: { opacity: 0, scale: 0.95 },
-                animate: { opacity: 1, scale: 1 },
-                exit: { opacity: 0, scale: 1.05 },
-                transition: { duration: 0.3 },
-                className: "relative bg-surface-primary rounded-xl shadow-card flex-1 max-h-[85vh] w-full flex items-center justify-center border-2 border-surface-tertiary",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "img",
-                  {
-                    src: images[currentIndex],
-                    alt: `心靈佛學傳家寶 內頁 ${currentIndex + 1}`,
-                    className: "h-full w-auto object-contain select-none",
-                    style: { maxHeight: "100%", maxWidth: "100%" },
-                    draggable: "false"
-                  }
-                )
-              },
-              currentIndex
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mt-6 bg-dark-800 border border-primary-800/30 px-6 py-2.5 rounded-full text-accent font-semibold tracking-[0.15em] text-base font-display", children: [
-              "PAGE ",
-              currentIndex + 1,
-              " / ",
-              totalImages
-            ] })
-          ] })
-        ]
+        series,
+        currentIndex,
+        onClose: closeModal,
+        onPrev: prevSlide,
+        onNext: nextSlide
       }
     ) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("style", { dangerouslySetInnerHTML: {
