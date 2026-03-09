@@ -4,66 +4,49 @@
 
 @layer utilities {
   .text-shadow {
-    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .text-shadow-glow {
-    text-shadow: 0 0 20px rgba(243, 156, 18, 0.5), 0 0 40px rgba(243, 156, 18, 0.3);
+    text-shadow: 0 0 15px rgba(184, 134, 11, 0.35), 0 0 30px rgba(184, 134, 11, 0.15);
   }
 
-  .glass-panel {
-    @apply bg-white/75 backdrop-blur-xl border border-white/60 shadow-glass;
-  }
-
+  /* 導航列玻璃效果 — 使用原生 CSS 避免 @apply 透明度相容問題 */
   .glass-nav {
-    @apply bg-white/90 backdrop-blur-lg shadow-md border-b border-white/50;
-  }
-
-  /* 移除會導致 Rollup 打包崩潰的 Data URI bg-aura，改為標準的漸層 */
-  .bg-aura {
-    background: linear-gradient(-45deg, #fffaf2, #f3e5f5, #e0f7fa, #fff6e5);
-    background-size: 400% 400%;
-    animation: gradientBG 20s ease infinite;
+    background-color: rgba(253, 251, 247, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(232, 221, 208, 0.6);
   }
 }
 
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
+/* 全域字體堆疊匯入 */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  /* 套用會流動的高飽和度柔美背景，取代單調的全白黑 */
-  @apply bg-aura text-dark-800 font-sans antialiased overflow-x-hidden min-h-screen relative;
+  /* 乾淨的暖白色背景 */
+  background-color: #FDFBF7;
+  color: #292524;
+  @apply font-sans antialiased overflow-x-hidden min-h-screen relative;
 }
 
-/* 滾動條優化 */
+/* 滾動條優化 — 使用品牌色系 */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fdfbf7;
+  background: #F7F3EC;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f3c471;
-  border-radius: 4px;
+  background: #D4A843;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f39c12;
+  background: #B8860B;
 }
