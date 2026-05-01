@@ -15718,11 +15718,21 @@ function Footer() {
     ] })
   ] });
 }
+function OrderNoticeSection() {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "order-notice", className: "py-16 md:py-24 bg-surface-secondary", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-5xl mx-auto px-4 sm:px-6 lg:px-8", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-center mb-8 md:mb-10", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm md:text-base font-semibold tracking-[0.18em] uppercase text-accent mb-3", children: "Important Notice" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-dark-900", children: "封序更正說明與查閱" })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mx-auto max-w-3xl rounded-lg border border-primary-200 bg-white p-3 shadow-card", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: `${"/college/"}qa.png`, alt: "封序更正說明與查閱", className: "block w-full h-auto rounded-md", loading: "lazy" }) })
+  ] }) });
+}
 function App() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative min-h-screen text-dark-800 overflow-hidden", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Navbar, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(HeroSection, {}),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(OrderNoticeSection, {}),
       /* @__PURE__ */ jsxRuntimeExports.jsx(AboutSection, {}),
       /* @__PURE__ */ jsxRuntimeExports.jsx(AcademySection, {}),
       /* @__PURE__ */ jsxRuntimeExports.jsx(WorksGallery, {})
