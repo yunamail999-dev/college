@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
+import OrderNoticeSection from './components/OrderNoticeSection';
 import AboutSection from './components/AboutSection';
 import AcademySection from './components/AcademySection';
 import WorksGallery from './components/WorksGallery';
@@ -12,6 +13,7 @@ function App() {
             <Navbar />
             <main>
                 <HeroSection />
+                <OrderNoticeSection />
                 <AboutSection />
                 <AcademySection />
                 <WorksGallery />
